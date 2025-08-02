@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.justahuman.vh_client_optimize.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "vh_client_optimize.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "jei.ClientLifecycleHandlerMixin",
+    "jei.IngredientManagerMixin",
+    "jei.RecipeManagerMixin",
+    "powah.WikiMixin",
+    "spark.JoinMultiplayerScreenMixin",
+    "spark.SparkApiAccessor",
+    "vault_hunters.ClientBountyDataMixin",
+    "vault_hunters.GroupUtilsMixin",
+    "vault_hunters.ItemAccessAccessor",
+    "vault_hunters.PlayerEventsMixin",
+    "vault_hunters.TooltipConfigMixin",
+    "vault_hunters.TooltipEntryMixin",
+    "vault_hunters.VaultGeneralConfigMixin",
+    "vault_hunters.VoidCrucibleBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
