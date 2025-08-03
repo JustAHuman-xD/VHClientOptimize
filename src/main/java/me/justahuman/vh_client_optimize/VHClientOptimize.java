@@ -31,7 +31,7 @@ public class VHClientOptimize {
 
     public VHClientOptimize() {
         IModFileInfo vh = ModList.get().getModFileById("the_vault");
-        if (!vh.versionString().contains("3.18")) {
+        if (!vh.versionString().contains("3.19")) {
             throw new RuntimeException("This version of VH Client Optimize is not intended for any version of Vault Hunters 3rd Edition other than Update 18! Update the mod to the correct version!");
         }
         LOGGER.info("VH Client Optimize loaded!");

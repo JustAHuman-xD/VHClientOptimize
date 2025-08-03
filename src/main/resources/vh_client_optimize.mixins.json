@@ -24,7 +24,6 @@
     "vault_hunters.PlayerEventsMixin",
     "vault_hunters.TooltipConfigMixin",
     "vault_hunters.TooltipEntryMixin",
-    "vault_hunters.VaultGeneralConfigMixin",
     "vault_hunters.VoidCrucibleBlockMixin"
   ],
   "injectors": {
