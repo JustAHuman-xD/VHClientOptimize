@@ -2,9 +2,9 @@ package me.justahuman.vh_client_optimize.mixin.jei;
 
 import me.justahuman.vh_client_optimize.VHClientOptimize;
 import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.common.recipes.RecipeManager;
-import mezz.jei.common.recipes.RecipeManagerInternal;
-import mezz.jei.common.util.ErrorUtil;
+import mezz.jei.recipes.RecipeManager;
+import mezz.jei.recipes.RecipeManagerInternal;
+import mezz.jei.util.ErrorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;

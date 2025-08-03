@@ -1,21 +1,22 @@
 package me.justahuman.vh_client_optimize.mixin.jei;
 
 import me.justahuman.vh_client_optimize.VHClientOptimize;
+import mezz.jei.api.helpers.IModIdHelper;
 import mezz.jei.api.ingredients.IIngredientHelper;
 import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.ITypedIngredient;
-import mezz.jei.common.gui.ingredients.IListElement;
-import mezz.jei.common.ingredients.IListElementInfo;
-import mezz.jei.common.ingredients.IngredientBlacklistInternal;
-import mezz.jei.common.ingredients.IngredientFilter;
-import mezz.jei.common.ingredients.IngredientInfo;
-import mezz.jei.common.ingredients.IngredientListElementFactory;
-import mezz.jei.common.ingredients.IngredientManager;
-import mezz.jei.common.ingredients.ListElementInfo;
-import mezz.jei.common.ingredients.RegisteredIngredients;
-import mezz.jei.common.ingredients.TypedIngredient;
-import mezz.jei.common.util.ErrorUtil;
 import mezz.jei.core.config.IClientConfig;
+import mezz.jei.gui.ingredients.IListElement;
+import mezz.jei.ingredients.IListElementInfo;
+import mezz.jei.ingredients.IngredientBlacklistInternal;
+import mezz.jei.ingredients.IngredientFilter;
+import mezz.jei.ingredients.IngredientInfo;
+import mezz.jei.ingredients.IngredientListElementFactory;
+import mezz.jei.ingredients.IngredientManager;
+import mezz.jei.ingredients.ListElementInfo;
+import mezz.jei.ingredients.RegisteredIngredients;
+import mezz.jei.ingredients.TypedIngredient;
+import mezz.jei.util.ErrorUtil;
 import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -31,6 +32,7 @@ import java.util.Optional;
 
 @Mixin(value = IngredientManager.class, remap = false)
 public abstract class IngredientManagerMixin {
+    @Shadow @Final private IModIdHelper modIdHelper;
     @Shadow @Final private IClientConfig clientConfig;
     @Shadow @Final private IngredientBlacklistInternal blacklist;
     @Shadow @Final private static Logger LOGGER;

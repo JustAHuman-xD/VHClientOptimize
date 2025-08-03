@@ -2,11 +2,10 @@ package me.justahuman.vh_client_optimize.mixin.jei;
 
 import me.justahuman.vh_client_optimize.VHClientOptimize;
 import me.justahuman.vh_client_optimize.extension.AsyncJei;
-import mezz.jei.common.startup.JeiEventHandlers;
-import mezz.jei.common.startup.JeiStarter;
+import mezz.jei.forge.config.ModIdFormattingConfig;
 import mezz.jei.forge.events.RuntimeEventSubscriptions;
 import mezz.jei.forge.startup.ClientLifecycleHandler;
-import mezz.jei.forge.startup.EventRegistration;
+import mezz.jei.startup.JeiStarter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TextComponent;
 import org.apache.logging.log4j.Logger;
@@ -23,6 +22,8 @@ public class ClientLifecycleHandlerMixin {
     @Shadow @Final private static Logger LOGGER;
     @Shadow @Final private RuntimeEventSubscriptions runtimeSubscriptions;
     @Shadow @Final private JeiStarter jeiStarter;
+
+    @Shadow @Final private ModIdFormattingConfig modIdFormattingConfig;
 
     /**
      * @author JustAHuman
@@ -47,9 +48,9 @@ public class ClientLifecycleHandlerMixin {
         } else {
             VHClientOptimize.JEI_FUTURE = new CompletableFuture<>();
             AsyncJei.THREAD.execute(() -> {
+                this.modIdFormattingConfig.checkForModNameFormatOverride();
                 long startTime = System.currentTimeMillis();
-                JeiEventHandlers handlers = this.jeiStarter.start();
-                EventRegistration.registerEvents(this.runtimeSubscriptions, handlers);
+                this.jeiStarter.start(this.runtimeSubscriptions);
                 long endTime = System.currentTimeMillis();
                 VHClientOptimize.JEI_FUTURE.complete(null);
                 VHClientOptimize.JEI_FUTURE = null;
