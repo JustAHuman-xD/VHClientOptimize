@@ -1,6 +1,7 @@
 package me.justahuman.vh_client_optimize.mixin.jei;
 
 import me.justahuman.vh_client_optimize.VHClientOptimize;
+import me.justahuman.vh_client_optimize.extension.AsyncJei;
 import mezz.jei.forge.config.ModIdFormattingConfig;
 import mezz.jei.forge.events.RuntimeEventSubscriptions;
 import mezz.jei.forge.startup.ClientLifecycleHandler;
@@ -15,18 +16,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Mixin(value = ClientLifecycleHandler.class, remap = false)
 public class ClientLifecycleHandlerMixin {
-    @Unique
-    private static final ExecutorService JEI_STARTER_THREAD = Executors.newSingleThreadExecutor(r -> {
-        Thread thread = new Thread(r, "JeiStarterThread");
-        thread.setDaemon(true);
-        return thread;
-    });
-
     @Shadow @Final private static Logger LOGGER;
     @Shadow @Final private RuntimeEventSubscriptions runtimeSubscriptions;
     @Shadow @Final private JeiStarter jeiStarter;
@@ -54,13 +46,15 @@ public class ClientLifecycleHandlerMixin {
             LOGGER.error("Failed to start JEI, it is already running.");
         } else {
             VHClientOptimize.JEI_FUTURE = new CompletableFuture<>();
-            JEI_STARTER_THREAD.execute(() -> {
+            AsyncJei.THREAD.execute(() -> {
                 this.modIdFormattingConfig.checkForModNameFormatOverride();
+                long startTime = System.currentTimeMillis();
                 this.jeiStarter.start(runtimeSubscriptions);
+                long endTime = System.currentTimeMillis();
                 VHClientOptimize.JEI_FUTURE.complete(null);
                 VHClientOptimize.JEI_FUTURE = null;
                 if (minecraft.player != null) {
-                    minecraft.player.displayClientMessage(new TextComponent("§aJEI loaded."), false);
+                    minecraft.player.displayClientMessage(new TextComponent("§aJEI loaded in " + (endTime - startTime) / 1000d + "s"), false);
                 }
             });
         }

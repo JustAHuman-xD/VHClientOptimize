@@ -5,10 +5,12 @@ import me.justahuman.vh_client_optimize.extension.ItemCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
+@ApiStatus.ScheduledForRemoval(inVersion = "VH-u20")
 @Mixin(value = TooltipConfig.TooltipEntry.class, remap = false)
 public class TooltipEntryMixin implements ItemCache {
     @Shadow

@@ -4,6 +4,7 @@ import iskallia.vault.config.VaultGeneralConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@ApiStatus.ScheduledForRemoval(inVersion = "VH-u20")
 @Mixin(value = VaultGeneralConfig.class, remap = false)
 public class VaultGeneralConfigMixin {
     @Unique private final Map<ResourceLocation, Boolean> vh$blacklistCache = new ConcurrentHashMap<>();

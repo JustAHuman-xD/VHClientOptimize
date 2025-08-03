@@ -5,6 +5,7 @@ import iskallia.vault.init.ModItems;
 import iskallia.vault.util.InventoryUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 
+@ApiStatus.ScheduledForRemoval(inVersion = "VH-u20")
 @Mixin(value = ClientBountyData.class, remap = false)
 public class ClientBountyDataMixin {
     @Unique private static boolean vh$lostBounty = false;

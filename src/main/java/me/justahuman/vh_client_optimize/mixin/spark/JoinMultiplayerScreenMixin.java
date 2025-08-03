@@ -19,9 +19,15 @@ import java.util.concurrent.CompletableFuture;
 public class JoinMultiplayerScreenMixin {
     @Inject(method = "joinSelectedServer", at = @At("HEAD"))
     public void startProfilerOnJoin(CallbackInfo ci) {
+        if (!VHClientOptimize.JOIN_PROFILER.get()) {
+            VHClientOptimize.LOGGER.info("Profiler on join is disabled, skipping.");
+            return;
+        }
+
+        VHClientOptimize.LOGGER.info("Profiler on join is enabled, starting profiler...");
         if (SparkProvider.get() instanceof SparkApiAccessor accessor) {
             SparkPlatform platform = accessor.getPlatform();
-            var previous = platform.getSamplerContainer().getActiveSampler();
+            Sampler previous = platform.getSamplerContainer().getActiveSampler();
             if (previous != null) {
                 VHClientOptimize.LOGGER.info("Cannot start profiler on join, another sampler is already active");
                 return;
@@ -43,11 +49,13 @@ public class JoinMultiplayerScreenMixin {
             platform.getSamplerContainer().setActiveSampler(sampler);
             CompletableFuture<Sampler> future = sampler.getFuture();
             future.whenCompleteAsync((s, throwable) -> {
+                platform.getSamplerContainer().unsetActiveSampler(s);
                 if (throwable != null) {
                     VHClientOptimize.LOGGER.error("Profiler operation failed unexpectedly.", throwable);
                 }
             });
-            sampler.getFuture().whenCompleteAsync((s, throwable) -> platform.getSamplerContainer().unsetActiveSampler(s));
+        } else {
+            VHClientOptimize.LOGGER.error("SparkProvider is not an instance of SparkApiAccessor, cannot start profiler on join.");
         }
     }
 }
