@@ -3,7 +3,7 @@ package me.justahuman.vh_client_optimize.mixin.jei;
 import me.justahuman.vh_client_optimize.VHClientOptimize;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
-import mezz.jei.startup.JeiStarter;
+import mezz.jei.common.startup.JeiStarter;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
