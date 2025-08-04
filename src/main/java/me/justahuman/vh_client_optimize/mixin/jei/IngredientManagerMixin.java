@@ -1,6 +1,7 @@
 package me.justahuman.vh_client_optimize.mixin.jei;
 
 import me.justahuman.vh_client_optimize.VHClientOptimize;
+import mezz.jei.api.helpers.IModIdHelper;
 import mezz.jei.api.ingredients.IIngredientHelper;
 import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.ITypedIngredient;
@@ -31,6 +32,7 @@ import java.util.Optional;
 
 @Mixin(value = IngredientManager.class, remap = false)
 public abstract class IngredientManagerMixin {
+    @Shadow @Final private IModIdHelper modIdHelper;
     @Shadow @Final private IClientConfig clientConfig;
     @Shadow @Final private IngredientBlacklistInternal blacklist;
     @Shadow @Final private static Logger LOGGER;
