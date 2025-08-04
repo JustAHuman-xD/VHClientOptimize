@@ -10,6 +10,7 @@
     "jei.ClientLifecycleHandlerMixin",
     "jei.IngredientManagerMixin",
     "jei.IngredientSorterMixin",
+    "jei.JeiStarterMixin",
     "jei.RecipeManagerMixin",
     "powah.WikiMixin",
     "spark.JoinMultiplayerScreenMixin",

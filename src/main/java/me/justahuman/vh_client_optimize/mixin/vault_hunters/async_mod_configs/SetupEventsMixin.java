@@ -8,11 +8,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = SetupEvents.class, remap = false)
 public class SetupEventsMixin {
-    @Redirect(method = "setupCommon", at = @At(value = "INVOKE", target = "Liskallia/vault/init/ModConfigs;registerGen()V"))
-    private static void asynGenConfigs() {
-        AsyncModConfigs.registerGenConfigs();
-    }
-
     @Redirect(method = "setupCommon", at = @At(value = "INVOKE", target = "Liskallia/vault/init/ModConfigs;register()V"))
     private static void asynConfigs() {
         AsyncModConfigs.registerConfigs();
