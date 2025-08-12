@@ -4,6 +4,7 @@
   "package": "me.justahuman.vh_client_optimize.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "vh_client_optimize.refmap.json",
+  "plugin": "me.justahuman.vh_client_optimize.mixin.VHCOMixinPlugin",
   "mixins": [
   ],
   "client": [
