@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -53,7 +55,6 @@ public class ClientLifecycleHandlerMixin {
                 this.jeiStarter.start(this.runtimeSubscriptions);
                 long endTime = System.currentTimeMillis();
                 VHClientOptimize.JEI_FUTURE.complete(null);
-                VHClientOptimize.JEI_FUTURE = null;
                 if (minecraft.player != null) {
                     minecraft.player.displayClientMessage(new TextComponent("§aJEI loaded in " + (endTime - startTime) / 1000d + "s"), false);
                 }
