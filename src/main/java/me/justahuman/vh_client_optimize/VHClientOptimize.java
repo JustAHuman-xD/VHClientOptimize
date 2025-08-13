@@ -17,13 +17,16 @@ public class VHClientOptimize {
     public static final String MOD_ID = "vh_client_optimize";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static ForgeConfigSpec CLIENT_CONFIG;
-    public static ForgeConfigSpec.BooleanValue JOIN_PROFILER;
+    public static final ForgeConfigSpec CLIENT_CONFIG;
+    public static final ForgeConfigSpec.BooleanValue JOIN_PROFILER;
+    public static final ForgeConfigSpec.BooleanValue DYNAMIC_PACK_DEBUG;
     static {
         ForgeConfigSpec.Builder clientBuilder = new ForgeConfigSpec.Builder();
         clientBuilder.comment("VH Client Optimize Configuration");
         JOIN_PROFILER = clientBuilder.comment("If a client spark profiler should automatically start when joining a server. This is useful for debugging performance issues.")
                 .define("joinProfiler", false);
+        DYNAMIC_PACK_DEBUG = clientBuilder.comment("If the dynamic resource pack from wood good should be saved to files.")
+                .define("dynamicPackDebug", false);
         CLIENT_CONFIG = clientBuilder.build();
     }
 
