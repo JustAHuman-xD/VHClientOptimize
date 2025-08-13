@@ -7,6 +7,7 @@
   "mixins": [
   ],
   "client": [
+    "ctm.TextureMetadataHandlerMixin",
     "jei.ClientLifecycleHandlerMixin",
     "jei.IngredientManagerMixin",
     "jei.IngredientSorterMixin",
@@ -18,6 +19,7 @@
     "vault_hunters.async_mod_configs.SetupEventsMixin",
     "vault_hunters.async_mod_configs.GenericConfigSyncDescriptorMixin",
     "vault_hunters.async_mod_configs.GenericCustomConfigSyncDescriptorMixin",
+    "vault_hunters.template_cleanup.StructureTemplateAccessor",
     "vault_hunters.ClientBountyDataMixin",
     "vault_hunters.ClientEventsMixin",
     "vault_hunters.GroupUtilsMixin",
@@ -26,7 +28,8 @@
     "vault_hunters.TooltipConfigMixin",
     "vault_hunters.TooltipEntryMixin",
     "vault_hunters.VaultGeneralConfigMixin",
-    "vault_hunters.VoidCrucibleBlockMixin"
+    "vault_hunters.VoidCrucibleBlockMixin",
+    "vault_mapper.RoomDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1
