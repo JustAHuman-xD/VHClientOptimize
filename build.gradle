@@ -45,6 +45,7 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven { url = "https://maven.bawnorton.com/releases" }
     maven { url "https://www.cursemaven.com" }
     flatDir { dir "libs" }
 }
@@ -60,9 +61,13 @@ dependencies {
     implementation fg.deobf("curse.maven:powah-rearchitected-633483:${powah_version}")
     implementation fg.deobf("curse.maven:jei-238222:${jei_version}")
     implementation fg.deobf("curse.maven:jeitweaker-368718:${jeitweaker_version}")
-    implementation fg.deobf("curse.maven:vaultmapper-1099126:${vaultmapper_version}")
     implementation fg.deobf("curse.maven:ctm-267602:${ctm_version}")
     implementation fg.deobf("curse.maven:selene-499980:${selene_version}")
+
+    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.5-beta.2"))
+    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.3.5-beta.2")) {
+        jarJar.ranged(it, "[0.3.5-beta.2,)")
+    }
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {

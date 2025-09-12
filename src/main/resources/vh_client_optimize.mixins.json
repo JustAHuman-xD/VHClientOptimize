@@ -5,9 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "vh_client_optimize.refmap.json",
   "plugin": "me.justahuman.vh_client_optimize.mixin.VHCOMixinPlugin",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
+    "copycats.BlockStateBaseMixin",
     "ctm.TextureMetadataHandlerMixin",
     "jei.ClientLifecycleHandlerMixin",
     "jei.IngredientManagerMixin",
@@ -19,10 +19,6 @@
     "selene.DynamicResourcePackMixin",
     "spark.JoinMultiplayerScreenMixin",
     "spark.SparkApiAccessor",
-    "vault_hunters.async_mod_configs.SetupEventsMixin",
-    "vault_hunters.async_mod_configs.GenericConfigSyncDescriptorMixin",
-    "vault_hunters.async_mod_configs.GenericCustomConfigSyncDescriptorMixin",
-    "vault_hunters.template_cleanup.StructureTemplateAccessor",
     "vault_hunters.ClientBountyDataMixin",
     "vault_hunters.ClientEventsMixin",
     "vault_hunters.GroupUtilsMixin",
@@ -30,8 +26,12 @@
     "vault_hunters.PlayerEventsMixin",
     "vault_hunters.TooltipConfigMixin",
     "vault_hunters.TooltipEntryMixin",
+    "vault_hunters.VaultMapRoomIconsConfigMixin",
     "vault_hunters.VoidCrucibleBlockMixin",
-    "vault_mapper.RoomDataMixin"
+    "vault_hunters.async_mod_configs.GenericConfigSyncDescriptorMixin",
+    "vault_hunters.async_mod_configs.GenericCustomConfigSyncDescriptorMixin",
+    "vault_hunters.async_mod_configs.SetupEventsMixin",
+    "vault_hunters.template_cleanup.StructureTemplateAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
